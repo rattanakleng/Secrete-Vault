@@ -12,7 +12,7 @@ module.exports = (app) => {
 // Api route for reading passwords table
 app.get("/api/passwords", function(req, res) {
     // GET route for getting all of passwords
-    db.Passwords.findAll({})
+    db.Password.findAll({})
     .then(function(dbPasswords) {
         res.json(dbPasswords);
     });
@@ -20,13 +20,12 @@ app.get("/api/passwords", function(req, res) {
 
 //Api route for saving a password
 app.post("/api/posts", (req, res) => {
-    db.Passwords.create(req.body)
+    console.log(req.body);
+    db.Password.create(req.body)
     .then((dbPasswords) => {
         res.json(dbPasswords);
     });
 });
-
-
 }
 
 

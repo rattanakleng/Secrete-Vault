@@ -1,6 +1,7 @@
 //Dependency
 const express = require("express");
 // const router = express.Router();
+const db = require("../models");
 
 module.exports = (app) => {
 
@@ -11,14 +12,21 @@ module.exports = (app) => {
 
     //html router for view-password.handlebar
     app.get("/view-password", (req, res) => {
-        res.render("view-password");
+        console.log("Test Route")
+        db.Password.findAll({}).then(function(dbPassword) {
+            console.log(dbPassword);
+            res.render("view-password", {
+                data:dbPassword
+            });
+        })
+       
     })
 
-    //html router for add-password.handlebar
+    //html route for add-password.handlebar
     app.get("/add-password", (req, res) => {
         res.render("add-password");
     })
 
-}
+ }
 
 

@@ -1,27 +1,24 @@
 module.exports = function(sequelize, DataTypes) {
-    let Passwords = sequelize.define("Passwords", {
+    let Passwords = sequelize.define("Password", {
         name: {
             type: DataTypes.STRING,
-            validate: {
-                len: [50]
-            }
+            len: [1]
+             
         },
         link: {
             type: DataTypes.TEXT,
         },
         username: {
             type: DataTypes.STRING,
-            validate: {
-                allowNull: false,
-                len: [50]
-            }
+            len: [1],
+            allowNull: false,
+            
         },
         password: {
             type: DataTypes.STRING,
-            validate: {
-                allowNull: false,
-                len: [50]
-            }
+            allowNull: false,
+            len: [1]
+             
         },
         description: {
             type: DataTypes.TEXT,
