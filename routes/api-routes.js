@@ -46,19 +46,16 @@ module.exports = (app) => {
     app.put("/api/password/update/:id", (req, res) => {
         console.log(req.body)
         db.Password.update(
-           req.body
-        , {
+           req.body, 
+           {
             where: {
                 id: req.params.id
             }
         }).then((dbPassword) => {
-            console.log("This is" + dbPassword);
+            // console.log("This is" + dbPassword);
             res.json(dbPassword);
         });
     });
-
-
-
 }
 
 

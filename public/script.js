@@ -29,15 +29,15 @@ $(document).ready(function () {
 
 
     // Delete a password
-    $(document).on("click", "#delete-password", function (event) {
-        event.preventDefault();
-        console.log(event.target);
-        const dataId = $(event.target).attr("data-id");
+    $(document).on("click", "#delete-password", function () {
+        // event.preventDefault();
+        // console.log(event.target);
+        const dataId = $(this).attr("data-id");
         $.ajax({
             method: "DELETE",
             url: "/api/password/delete/" + dataId
         }).then(function () {
-            location.reload("/view-password");
+            location.reload();
         })
     });
 
@@ -52,9 +52,7 @@ $(document).ready(function () {
 
     // Call Api to update password
 
-    $(".update").on("submit", function (event) {
-
-        event.preventDefault();
+    $("#update-password").on("click", function () {
 
         let newPassword = {
             name: $("#input-name").val().trim(),
@@ -64,21 +62,16 @@ $(document).ready(function () {
             description: $("#input-description").val().trim()
         }
 
-
         let id = $("#updateId").val();
         // alert(id);
         console.log(id);
         $.ajax("/api/password/update/" + id, {
             type: "PUT",
             data: newPassword
+        }).then(function () {
+            // alert ("Data is updated");
+            location.href = "/view-password";
         })
-            .then(function () {
-                console.log("Password is added");
-                location.reload("/view-password");
-            })
-
-
-
 
         // Another way to write using build in jquery 
         // $.post("/api/posts",newPassword,function(){
