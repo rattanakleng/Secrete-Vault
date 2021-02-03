@@ -12,14 +12,13 @@ module.exports = (app) => {
 
     //html router for view-password.handlebar
     app.get("/view-password", (req, res) => {
-        console.log("Test Route")
-        db.Password.findAll({}).then(function(dbPassword) {
-            console.log(dbPassword);
+        // console.log("Test Route")
+        db.Password.findAll({}).then(function (dbPassword) {
+            // console.log(dbPassword);
             res.render("view-password", {
-                data:dbPassword
+                data: dbPassword
             });
         })
-       
     })
 
     //html route for add-password.handlebar
@@ -27,6 +26,18 @@ module.exports = (app) => {
         res.render("add-password");
     })
 
- }
+    //html route for edit password
+    app.get("/update-password/:id", (req, res) => {
+        
+        db.Password.findOne({ where: { id: req.params.id } }).then(function (dbPassword) {
+            // console.log(dbPassword);
+            db.Password.findOne({where: {
+                id: req.params.id
+            }}).then(function(dbPassword) {
+                res.render("update-password", dbPassword)
+            })
+           
+        });
+    })
 
-
+};
