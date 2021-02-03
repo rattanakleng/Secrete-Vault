@@ -1,16 +1,7 @@
 $(document).ready(function () {
     $(".input").on("submit", function (event) {
 
-        event.preventDefault();
-
-        let newPassword = {
-            name: $("#input-name").val().trim(),
-            link: $("#input-link").val().trim(),
-            username: $("#input-username").val().trim(),
-            password: $("#input-password").val().trim(),
-            description: $("#input-description").val().trim()
-        }
-
+ 
         console.log(newPassword);
 
         $.ajax("/api/password/post", {
